@@ -1,0 +1,15 @@
+DocAccess/
+│
+├── app.py
+├── config.py
+├── models.py
+├── routes/
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── doctors.py
+│   ├── appointments.py
+│   └── telehealth.py
+└── utils/
+    └── __init__.py
+    └── decorators.py
+
