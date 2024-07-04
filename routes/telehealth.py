@@ -1,11 +1,9 @@
 from flask import Blueprint, request, jsonify
-from twilio.rest import Client
 from models import db, Appointment, Consultation
 from config import Config
 from utils.decorators import role_required
 
 telehealth_bp = Blueprint('telehealth_bp', __name__)
-client = Client(Config.TWILIO_ACCOUNT_SID, Config.TWILIO_AUTH_TOKEN)
 
 @telehealth_bp.route('/telehealth/start', methods=['POST'])
 @role_required('doctor')

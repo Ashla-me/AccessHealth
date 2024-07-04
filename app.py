@@ -2,13 +2,14 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from models import db
+from config import Config
 from routes.auth import auth_bp
 from routes.doctors import doctors_bp
 from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
 
 app = Flask(__name__)
-app.config.from_object('config.Config')
+app.config.from_object(Config)
 
 jwt = JWTManager(app)
 db.init_app(app)
