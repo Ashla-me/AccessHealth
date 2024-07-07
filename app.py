@@ -20,6 +20,10 @@ app.register_blueprint(doctors_bp, url_prefix='/api')
 app.register_blueprint(appointments_bp, url_prefix='/api')
 app.register_blueprint(telehealth_bp, url_prefix='/api')
 
+@app.route('/')
+def home():
+    return 'Welcome to AccessHealth!'
+
 if __name__ == '__main__':
     app.run(debug=True)
 
