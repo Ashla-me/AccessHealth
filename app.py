@@ -8,7 +8,7 @@ from routes.doctors import doctors_bp
 from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
 
-app = Flask(__name__, static_folder='web-static/style/style.css', template_folder='template/index')
+app = Flask(__name__, static_folder='web-static', template_folder='template')
 app.config.from_object(Config)
 
 jwt = JWTManager(app)
@@ -19,10 +19,6 @@ app.register_blueprint(auth_bp, url_prefix='/api/auth')
 app.register_blueprint(doctors_bp, url_prefix='/api')
 app.register_blueprint(appointments_bp, url_prefix='/api')
 app.register_blueprint(telehealth_bp, url_prefix='/api')
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/<template>')
 def serve_template(template):
