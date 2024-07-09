@@ -8,7 +8,7 @@ from routes.doctors import doctors_bp
 from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='web-static')
 app.config.from_object(Config)
 
 jwt = JWTManager(app)
@@ -23,6 +23,8 @@ app.register_blueprint(telehealth_bp, url_prefix='/api')
 @app.route('/')
 def home():
     return 'Welcome to AccessHealth!'
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
