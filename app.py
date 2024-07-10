@@ -22,20 +22,7 @@ app.register_blueprint(telehealth_bp, url_prefix='/api')
 
 @app.route('/')
 def home():
-    return 'Welcome to AccessHealth!'
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/<template>')
-def serve_template(template):
-    try:
-        return render_template(f'{template}.html')
-    except TemplateNotFound:
-        return "Template not found", 404
-    except Exception as e:
-        return str(e), 500
+    return 'Welcome to AccessHealth!.'
 
 if __name__ == '__main__':
     app.run(debug=True)
