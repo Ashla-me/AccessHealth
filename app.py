@@ -1,4 +1,4 @@
-from flask import Flask, render_template 
+from flask import Flask, render_template,jsonify, request, redirect, url_prefix  
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from models import db
@@ -7,8 +7,9 @@ from routes.auth import auth_bp
 from routes.doctors import doctors_bp
 from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
+import requests
 
-app = Flask(__name__, static_folder='web-static', template_folder='template')
+app = Flask(__name__, static_folder='web-static/static', template_folder='web-static/template')
 app.config.from_object(Config)
 
 jwt = JWTManager(app)
@@ -34,7 +35,18 @@ def serve_template(template):
     except Template Not Found:
         return render_template('index.html')
     except Exception as e:
-        return str(e), 500
+        return str(e), 500@app.route('/doctors', methods=['GET'])
+def get_doctors():
+    url = '/api/doctors'https://accesshealth.onrender.com
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        doctors = response.json()
+        return jsonify(doctors)
+    except requests.exceptions.RequestException as err:
+        return jsonify({"error": str(err)}), 500
+    
+
     
 if __name__ == '__main__':
     app.run(debug=True)
