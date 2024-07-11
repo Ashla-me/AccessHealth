@@ -24,9 +24,6 @@ app.register_blueprint(telehealth_bp, url_prefix='/api')
 @app.route('/')
 def home():
     return 'Welcome to AccessHealth!.'
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/<template>')
 def serve_template(template):
@@ -35,9 +32,9 @@ def serve_template(template):
     except Template Not Found:
         return render_template('index.html')
     except Exception as e:
-        return str(e), 500@app.route('/doctors', methods=['GET'])
+        return str(e), 500
 def get_doctors():
-    url = '/api/doctors'https://accesshealth.onrender.com
+    url = 'https://accesshealth.onrender.com/api/doctors'
     try:
         response = requests.get(url)
         response.raise_for_status()
