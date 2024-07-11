@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, 
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from models import db
@@ -23,7 +23,19 @@ app.register_blueprint(telehealth_bp, url_prefix='/api')
 @app.route('/')
 def home():
     return 'Welcome to AccessHealth!.'
+@app.route('/')
+def home():
+    return render_template('index.html')
 
+@app.route('/<template>')
+def serve_template(template):
+    try:
+        return render_template(f'{template}.html')
+    except Template Not Found:
+        return render_template('index.html')
+    except Exception as e:
+        return str(e), 500
+    
 if __name__ == '__main__':
     app.run(debug=True)
 
