@@ -9,7 +9,7 @@ from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
 import requests
 
-app = Flask(__name__, static_folder='web-static/static', template_folder='template')
+app = Flask(__name__, static_folder='/web-static/static', template_folder='/template')
 app.config.from_object(Config)
 
 jwt = JWTManager(app)
