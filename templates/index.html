@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AccessHealth</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('web-static', filename='style/style.css') }}">
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
         <h2>Welcome to AccessHealth</h2>
         <p>Your gateway to convenient telehealth consultations.</p>
     </main>
-    <script src="{{ url_for('filename='web-static/scripts/auth.js') }}"></script>
+    <script src="{{ url_for('web-static', filename='scripts/auth.js') }}"></script>
 </body>
 </html>
 
