@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request, redirect, url_prefix  
-from flask_jwt_extended import JWTManager
+from flask_jwt_extapp.ended import JWTManager
 from flask_migrate import Migrate
 from models import db
 from config import Config
@@ -23,7 +23,9 @@ app.register_blueprint(telehealth_bp, url_prefix='/api')
 
 @app.route('/')
 def home():
-    return 'Welcome to AccessHealth!.'
+    print('Welcome to AccessHealth!')
+    print('Revolutionizing Patient-Doctor Interactions')
+    return render_template('index.html')
 
 @app.route('/<template>')
 def serve_template(template):

@@ -10,15 +10,15 @@ class Config:
     DATABASE_HOST = 'localhost'
     DATABASE_NAME = 'records'
 
-    SQLALCHEMY_DATABASE_URI = f'mysql+mysqldb://{DATABASE_USERNAME}@{DATABASE_HOST}/{DATABASE_NAME}'
+    SQLALCHEMY_DATABASE_URI = f'mysql+mysqldb://{root}@{localhost}/{records}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
-    # Create a configured "Session" class
+    # Creates a configured "Session" class
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-    # Create a base class for our class definitions
+    # Creates a base class for our class definitions
     Base = declarative_base()
 
     # Dependency to get DB session

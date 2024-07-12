@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telehealth - AccessHealth</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>AccessHealth</h1>
+        <nav>
+            <a href="doctors.html">Doctors</a>
+            <a href="appointments.html">Appointments</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Telehealth Session</h2>
+        <form id="telehealth-form">
+            <label for="appointment_id">Appointment ID:</label>
+            <input type="text" id="appointment_id" name="appointment_id" required>
+            <button type="submit">Start Session</button>
+        </form>
+        <p id="message"></p>
+    </main>
+    <script src="scripts/telehealth.js"></script>
+</body>
+</html>
+
