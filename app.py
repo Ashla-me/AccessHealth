@@ -52,7 +52,7 @@ def serve_template(template):
         return str(e), 500
     
 def get_doctors():
-    url = 'https://accesshealth.onrender.com/api/doctors'
+    url = 'https://localhost:5000/api/doctors'
     try:
         response = requests.get(url)
         response.raise_for_status()
