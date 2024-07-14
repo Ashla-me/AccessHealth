@@ -1,4 +1,4 @@
-from flask import Flask, render_template,jsonify
+from flask import Flask, render_template,jsonify, request
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from models import db
@@ -7,31 +7,27 @@ from routes.auth import auth_bp
 from routes.doctors import doctors_bp
 from routes.appointments import appointments_bp
 from routes.telehealth import telehealth_bp
+from flask_cors import CORS
 import requests
+
 
 app = Flask(__name__, static_folder='web-static', template_folder='template')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///accesshealth.db'
+app.config['SECRET_KEY'] = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://ASHLA:ASHla1212!@localhost/bite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = '861af9062c612f4352007ea17eb8c1545857418b3007e36b024daec9bf7861c5'
 
 jwt = JWTManager(app)
 db.init_app(app)
 migrate = Migrate(app, db)
+CORS(app)
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
 app.register_blueprint(doctors_bp, url_prefix='/api')
 app.register_blueprint(appointments_bp, url_prefix='/api')
 app.register_blueprint(telehealth_bp, url_prefix='/api')
 
-# Models
-class Patient(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
-    age = db.Column(db.Integer)
-    medical_history = db.Column(db.Text)
-
-# Create database
 with app.app_context():
     db.create_all()
 
