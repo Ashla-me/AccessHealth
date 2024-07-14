@@ -10,7 +10,10 @@ from routes.telehealth import telehealth_bp
 import requests
 
 app = Flask(__name__, static_folder='web-static', template_folder='template')
-app.config.from_object(Config)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///accesshealth.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = '861af9062c612f4352007ea17eb8c1545857418b3007e36b024daec9bf7861c5'
 
 jwt = JWTManager(app)
 db.init_app(app)
@@ -21,10 +24,28 @@ app.register_blueprint(doctors_bp, url_prefix='/api')
 app.register_blueprint(appointments_bp, url_prefix='/api')
 app.register_blueprint(telehealth_bp, url_prefix='/api')
 
+# Models
+class Patient(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    age = db.Column(db.Integer)
+    medical_history = db.Column(db.Text)
+
+# Create database
+with app.app_context():
+    db.create_all()
+
 @app.route('/')
 def home():
     print('Welcome to AccessHealth!')
     return render_template('index.html')
+
+@app.route('/patients', methods=['GET'])
+def get_patients():
+    patients = Patient.query.all()
+    patient_list = [{'id': patient.id, 'name': patient.name, 'age': patient.age, 'medical_history': patient.medical_history} for patient in patients]
+    return jsonify(patient_list)
+
 #@app.route('/<template>')
 def serve_template(template):
     try:
