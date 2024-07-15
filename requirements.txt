@@ -20,4 +20,4 @@ Werkzeug==2.2.2
 zipp==3.19.2
 pymysql
 requests
-
+flask_cors
