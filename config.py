@@ -8,7 +8,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Define the database connection parameters
-    db_user = 'ASHLA'
+    db_user = 'root'
     db_password = 'ASHla1212!'
     db_host = 'localhost'
     db_name = 'bite'
