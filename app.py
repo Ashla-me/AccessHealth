@@ -1,4 +1,5 @@
 from flask import Flask, render_template,jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from models import db
@@ -49,7 +50,7 @@ def get_patients():
     patient_list = [{'id': patient.id, 'name': patient.name, 'age': patient.age, 'medical_history': patient.medical_history} for patient in patients]
     return jsonify(patient_list)
 
-#@app.route('/<template>')
+@app.route('/<template>')
 def serve_template(template):
     try:
         return render_template(f'{template}.html')
@@ -58,16 +59,23 @@ def serve_template(template):
     except Exception as e:
         return str(e), 500
     
+@app.route('/doctors', methods=['GET'])
 def get_doctors():
-    url = 'https://localhost:5000/api/doctors'
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        doctors = response.json()
-        return jsonify(doctors)
-    except requests.exceptions.RequestException as err:
-        return jsonify({"error": str(err)}), 500#
-    
+        doctors = Doctor.query.all()
+        doctors_list = [doctor.to_dict() for doctor in doctors]
+        return jsonify(doctors_list) 
+    except Exception as err:
+        return jsonify({"error": str(err)}), 500
+
+@app.route('/appointment')
+def register():
+    return render_template('appointment.py')
+
+@app.route('/doctors')
+def register():
+    return render_template('doctors.py')
+@app.route('/')
 if __name__ == '__main__':
     app.run(debug=True)
 

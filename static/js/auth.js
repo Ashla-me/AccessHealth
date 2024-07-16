@@ -3,7 +3,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:5000/api/auth', {
+    fetch('http://localhost:5000/api/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ document.getElementById('register-form').addEventListener('submit', function (e)
     const password = document.getElementById('password').value;
     const role = document.getElementById('role').value;
 
-    fetch('https://localhost:5000/api/auth/register', {
+    fetch('https://localhost:5000/api/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
