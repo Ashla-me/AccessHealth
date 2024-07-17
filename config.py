@@ -27,7 +27,7 @@ class Config:
 
     # Dependency to get DB session
     def get_db():
-        db = SessionLocal()
+        db = SessionLocal() # type: ignore
         try:
             yield db
         finally:

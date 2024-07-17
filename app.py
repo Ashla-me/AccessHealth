@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
-from models import db
+from models import Doctor, db
 from config import Config
 from flask_cors import CORS
 import requests
@@ -27,9 +27,9 @@ def create_app():
     from routes.appointments import appointments_bp
     from routes.telehealth import telehealth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(doctors_bp, url_prefix='/api')
-    app.register_blueprint(appointments_bp, url_prefix='/api')
-    app.register_blueprint(telehealth_bp, url_prefix='/api')
+    app.register_blueprint(doctors_bp, url_prefix='/api/doctors')
+    app.register_blueprint(appointments_bp, url_prefix='/api/appointmments')
+    app.register_blueprint(telehealth_bp, url_prefix='/api/telealth')
 
     with app.app_context():
         db.create_all()
@@ -49,7 +49,7 @@ def create_app():
 
     @app.route('/patients', methods=['GET'])
     def get_patients():
-        patients = Patient.query.all()
+        patients = patients.query.all()
         patient_list = [{'id': patient.id, 'name': patient.name, 'age': patient.age, 'medical_history': patient.medical_history} for patient in patients]
         return jsonify(patient_list)
     
@@ -62,15 +62,16 @@ def create_app():
         except Exception as err:
             return jsonify({"error": str(err)}), 500
     
-    @app.route('/appointment')
+    @app.route('/appointments')
     def appointment():
         return render_template('appointments.html')
 
-    @app.route('/Doctors')
+    @app.route('/doctors')
     def doctors_view():
         return render_template('doctors.html')
 
     return app
 if __name__ == '__main__':
+    
     app = create_app()
     app.run(debug=True)
