@@ -9,7 +9,7 @@ import requests
 
 def create_app():
     app = Flask(__name__, static_folder='static', template_folder='template')
-
+    app = create_app()
     app.config.from_object(Config)
 
     # initializes extensions

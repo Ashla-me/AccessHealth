@@ -10,13 +10,13 @@ class Config:
     JWT_SECRET_KEY = '861af9062c612f4352007ea17eb8c1545857418b3007e36b024daec9bf7861c5'
     
     # Define the database connection parameters
-    db_user = 'bite'
+    db_user = 'root'
     db_password = 'ASHla1212!'
     db_host = 'localhost'
-    db_name = 'mydatabase'
+    db_name = 'bite'
   
     # Creates the database URI
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://'bite:ASHla1212!@localhost/mydatabase"
+    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://root:ASHla1212!@localhost/bite"
     
     # Creates the engine
     engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
