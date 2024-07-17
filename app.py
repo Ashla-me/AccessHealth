@@ -6,13 +6,10 @@ from models import Doctor, db
 from config import Config
 from flask_cors import CORS
 import requests
-from app import create_app
-
 
 def create_app():
     app = Flask(__name__, static_folder='static', template_folder='template')
 
-    app = create_app()
     app.config['SECRET_KEY'] = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ASHla1212!@localhost/bite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -31,8 +28,8 @@ def create_app():
     from routes.telehealth import telehealth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(doctors_bp, url_prefix='/api/doctors')
-    app.register_blueprint(appointments_bp, url_prefix='/api/appointmments')
-    app.register_blueprint(telehealth_bp, url_prefix='/api/telealth')
+    app.register_blueprint(appointments_bp, url_prefix='/api/appointments')
+    app.register_blueprint(telehealth_bp, url_prefix='/api/telehealth')
 
     with app.app_context():
         db.create_all()
@@ -65,7 +62,7 @@ def create_app():
         except Exception as err:
             return jsonify({"error": str(err)}), 500
     
-    @app.route('/appointments')
+    @app.route('/appointment')
     def appointment():
         return render_template('appointments.html')
 
@@ -74,7 +71,7 @@ def create_app():
         return render_template('doctors.html')
 
     return app
+
 if __name__ == '__main__':
-    
     app = create_app()
-    app.run(debug=True)
+    app.run()
