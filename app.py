@@ -10,11 +10,9 @@ from app import create_app
 
 
 def create_app():
-
-    app = create_app()
-
     app = Flask(__name__, static_folder='static', template_folder='template')
 
+    app = create_app()
     app.config['SECRET_KEY'] = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ASHla1212!@localhost/bite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
