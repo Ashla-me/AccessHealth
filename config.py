@@ -1,4 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, db
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -16,7 +16,7 @@ class Config:
     db_name = 'bite'
   
     # Creates the database URI
-    SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}'
+    SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://'bite:ASHla1212!@localhost/mydatabase'
     
     # Creates the engine
     engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
