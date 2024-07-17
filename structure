@@ -1,15 +1,24 @@
-DocAccess/
+AccessHealth/                    
 │
-├── app.py
-├── config.py
-├── models.py
-├── routes/
-│   ├── __init__.py
-│   ├── auth.py
-│   ├── doctors.py
-│   ├── appointments.py
-│   └── telehealth.py
-└── utils/
-    └── __init__.py
-    └── decorators.py
-
+├── app.py                        
+├── requirements.txt              
+├── static/                       
+│   └── style.css
+│
+├── templates/                   
+│   ├── base.html
+│   ├── index.html
+│   └── ...
+│
+├── venv/                         
+│
+└── yourapp/                      
+    ├── __init__.py              
+    ├── models.py                 
+    ├── routes/                   
+    │   ├── __init__.py
+    │   ├── auth.py               
+    │   ├── main.py               
+    │   └── ...
+    └── static/ 
+        └── ...

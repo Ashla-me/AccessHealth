@@ -9,7 +9,6 @@ import requests
 
 def create_app():
     app = Flask(__name__, static_folder='static', template_folder='template')
-    app = create_app()
     app.config.from_object(Config)
 
     # initializes extensions
@@ -63,12 +62,13 @@ def create_app():
     def appointment():
         return render_template('appointments.html')
 
-    @app.route('/doctors')
+    @app.route('/doctors_view')
     def doctors_view():
         return render_template('doctors.html')
 
     return app
 
 if __name__ == '__main__':
+
     app = create_app()
-    app.run()
+    app.run(debug=True)
