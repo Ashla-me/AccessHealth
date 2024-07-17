@@ -6,8 +6,13 @@ from models import Doctor, db
 from config import Config
 from flask_cors import CORS
 import requests
+from app import create_app
+
 
 def create_app():
+
+    app = create_app()
+
     app = Flask(__name__, static_folder='static', template_folder='template')
 
     app.config['SECRET_KEY'] = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
