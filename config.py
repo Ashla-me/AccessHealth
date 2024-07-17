@@ -16,7 +16,7 @@ class Config:
     db_name = 'mydatabase'
   
     # Creates the database URI
-    SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://'bite:ASHla1212!@localhost/mydatabase'
+    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://'bite:ASHla1212!@localhost/mydatabase"
     
     # Creates the engine
     engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
