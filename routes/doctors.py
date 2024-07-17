@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
-from models import db, Doctor
+from models import db
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token
+from models import Doctor
 from utils.decorators import role_required
 
 doctors_bp = Blueprint('doctors_bp', __name__)

@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
-from models import db, Appointment
+from models import db
 from flask_jwt_extended import get_jwt_identity
+from models import Appointment
 from utils.decorators import role_required
 
 appointments_bp = Blueprint('appointments_bp', __name__)

@@ -1,6 +1,9 @@
+from http import client
 from flask import Blueprint, request, jsonify
-from models import db, Appointment, Consultation
+from models import db
+from flask_jwt_extended import JWTManager
 from config import Config
+from models import Appointment, Consultation
 from utils.decorators import role_required
 
 telehealth_bp = Blueprint('telehealth_bp', __name__)
