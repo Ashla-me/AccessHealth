@@ -10,10 +10,7 @@ import requests
 def create_app():
     app = Flask(__name__, static_folder='static', template_folder='template')
 
-    app.config['SECRET_KEY'] = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ASHla1212!@localhost/bite'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['JWT_SECRET_KEY'] = '861af9062c612f4352007ea17eb8c1545857418b3007e36b024daec9bf7861c5'
+    app.config.from_object(Config)
 
     # initializes extensions
     jwt = JWTManager(app)
@@ -62,7 +59,7 @@ def create_app():
         except Exception as err:
             return jsonify({"error": str(err)}), 500
     
-    @app.route('/appointment')
+    @app.route('/appointments')
     def appointment():
         return render_template('appointments.html')
 

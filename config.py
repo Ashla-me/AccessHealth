@@ -2,10 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from flask_jwt_extended import JWTManager
 
 class Config:
     SECRET_KEY = 'ae3ecc52f525b916cb484cd7cc74c077c7ab04f0651206d6'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_SECRET_KEY = '861af9062c612f4352007ea17eb8c1545857418b3007e36b024daec9bf7861c5'
     
     # Define the database connection parameters
     db_user = 'root'
